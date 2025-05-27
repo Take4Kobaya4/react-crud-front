@@ -12,9 +12,10 @@ const apiClient = axios.create({
     }
 });
 
-// タスク一覧の取得
-export const getAllTasks = async(): Promise<Task[]> => {
-    const response = await apiClient.get<Task[]>(`/tasks`);
+// タスク一覧の取得(検索できるように対応: searchパラメータを追加)
+export const getAllTasks = async(title?: string): Promise<Task[]> => {
+    const params = title ? { title } : {};
+    const response = await apiClient.get<Task[]>(`/tasks`, { params });
     return response.data;
 }
 

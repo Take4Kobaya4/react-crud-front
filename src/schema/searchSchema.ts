@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
 // 検索用のスキーマ
-export const SearchSchema = z.object({
-    query: z.string().optional(),
+export const searchSchema = z.object({
+    title: z.string(),
 });
+
+export type searchFormValues = z.infer<typeof searchSchema>;
 
